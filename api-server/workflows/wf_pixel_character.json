@@ -1,0 +1,255 @@
+{
+  "53": {
+    "inputs": {
+      "ckpt_name": "pixelmonster_v10.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "체크포인트 로드"
+    }
+  },
+  "82": {
+    "inputs": {
+      "image": "nn.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "이미지 로드"
+    }
+  },
+  "84": {
+    "inputs": {
+      "model": "promptgen_large_v2.0",
+      "folder_path": "Path to your image folder",
+      "caption_method": "extra_mixed",
+      "max_new_tokens": 1024,
+      "num_beams": 4,
+      "random_prompt": "never",
+      "prefix_caption": "",
+      "suffix_caption": "",
+      "replace_tags": "",
+      "images": [
+        "195",
+        0
+      ]
+    },
+    "class_type": "Miaoshouai_Tagger",
+    "_meta": {
+      "title": "🐾MiaoshouAI Tagger"
+    }
+  },
+  "88": {
+    "inputs": {
+      "text": [
+        "84",
+        2
+      ],
+      "clip": [
+        "160",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Positive Prompt)"
+    }
+  },
+  "90": {
+    "inputs": {
+      "text": "text, low resolution, blurry, extra limbs, distorted anatomy, holding items, bag, umbrella, weapon, out of frame, cropped, pixel noise, messy background, accessories, bracelets, earrings,bad anatomy, wrong proportions, excessive details, cluttered background, objects in hands, wearing backpack, jewelry, watches, holding phone, overlapping limbs, glitch pixels,duplicate limbs, poor pixel alignment, noisy pixels, holding something, incorrect shading, low quality sprite, over-accessorized, mismatched clothing, messy outlines, visible weapons,blurry, holding objects, incorrect hand positions, wrist accessories, distorted motion, off-center character, bad proportions, visual clutter, inconsistent animation, bag, hat",
+      "clip": [
+        "160",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Negative Prompt)"
+    }
+  },
+  "100": {
+    "inputs": {
+      "vae_name": "SD1.5/vae-ft-mse-840000-ema-pruned.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "VAE 로드"
+    }
+  },
+  "115": {
+    "inputs": {
+      "text": "white background, pixel art sprite sheet of a anime-style, full body, side view, clean running animation,8-frame sequence, retro video game style, clean design, empty hands, soft shading, vibrant colors, 16-bit pixel sprite sheet,no background,pixel character sprite animation, anime-inspired style, no objects or accessories, consistent lighting and smooth pixel shading, side view,video game sprite,pixel art walking loop, 8-frame animation, clean and sharp details, simple and minimal design, no props in hands, no jewelry, side scrolling action, charming and colorful, retro style",
+      "clip": [
+        "160",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Positive Prompt)"
+    }
+  },
+  "116": {
+    "inputs": {
+      "conditioning_to": [
+        "88",
+        0
+      ],
+      "conditioning_from": [
+        "115",
+        0
+      ]
+    },
+    "class_type": "ConditioningConcat",
+    "_meta": {
+      "title": "조건 (연결)"
+    }
+  },
+  "124": {
+    "inputs": {
+      "samples": [
+        "161",
+        0
+      ],
+      "vae": [
+        "100",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE 디코드"
+    }
+  },
+  "131": {
+    "inputs": {
+      "model_name": "General",
+      "device": "AUTO",
+      "dtype": "float32"
+    },
+    "class_type": "AutoDownloadBiRefNetModel",
+    "_meta": {
+      "title": "AutoDownloadBiRefNetModel"
+    }
+  },
+  "135": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "upscale_method": "nearest",
+      "blur_size": 91,
+      "blur_size_two": 7,
+      "fill_color": false,
+      "color": 0,
+      "mask_threshold": 0,
+      "model": [
+        "131",
+        0
+      ],
+      "images": [
+        "82",
+        0
+      ]
+    },
+    "class_type": "RembgByBiRefNetAdvanced",
+    "_meta": {
+      "title": "RembgByBiRefNetAdvanced"
+    }
+  },
+  "144": {
+    "inputs": {
+      "pixels": [
+        "194",
+        0
+      ],
+      "vae": [
+        "100",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE 인코드"
+    }
+  },
+  "160": {
+    "inputs": {
+      "stop_at_clip_layer": -2,
+      "clip": [
+        "53",
+        1
+      ]
+    },
+    "class_type": "CLIPSetLastLayer",
+    "_meta": {
+      "title": "CLIP 마지막 레이어 설정"
+    }
+  },
+  "161": {
+    "inputs": {
+      "seed": 986563075935733,
+      "steps": 20,
+      "cfg": 3.5,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "53",
+        0
+      ],
+      "positive": [
+        "116",
+        0
+      ],
+      "negative": [
+        "90",
+        0
+      ],
+      "latent_image": [
+        "144",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "194": {
+    "inputs": {
+      "amount": 3,
+      "image": [
+        "195",
+        0
+      ]
+    },
+    "class_type": "RepeatImageBatch",
+    "_meta": {
+      "title": "이미지 반복 배치 생성"
+    }
+  },
+  "195": {
+    "inputs": {
+      "image": [
+        "135",
+        0
+      ]
+    },
+    "class_type": "ImageRemoveAlpha+",
+    "_meta": {
+      "title": "🔧 Image Remove Alpha"
+    }
+  },
+  "205": {
+    "inputs": {
+      "images": [
+        "124",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "이미지 미리보기"
+    }
+  }
+}

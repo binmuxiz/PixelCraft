@@ -1,0 +1,1192 @@
+{
+  "1": {
+    "inputs": {
+      "vae_name": "SD1.5/vae-ft-mse-840000-ema-pruned.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "VAE 로드"
+    }
+  },
+  "3": {
+    "inputs": {
+      "images": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "run image preview"
+    }
+  },
+  "4": {
+    "inputs": {
+      "model_name": "General",
+      "device": "AUTO",
+      "dtype": "float32"
+    },
+    "class_type": "AutoDownloadBiRefNetModel",
+    "_meta": {
+      "title": "AutoDownloadBiRefNetModel"
+    }
+  },
+  "5": {
+    "inputs": {
+      "model": [
+        "4",
+        0
+      ],
+      "images": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "RembgByBiRefNet",
+    "_meta": {
+      "title": "RembgByBiRefNet"
+    }
+  },
+  "6": {
+    "inputs": {
+      "samples": [
+        "31",
+        0
+      ],
+      "vae": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE 디코드"
+    }
+  },
+  "7": {
+    "inputs": {
+      "image": "Running_openpose.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Pose Image"
+    }
+  },
+  "8": {
+    "inputs": {
+      "width": 5304,
+      "height": 664,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "빈캔버스"
+    }
+  },
+  "9": {
+    "inputs": {
+      "text": [
+        "15",
+        2
+      ],
+      "clip": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Positive Prompt)"
+    }
+  },
+  "11": {
+    "inputs": {
+      "control_net_name": "1.5/control_v11p_sd15_openpose_fp16.safetensors"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "컨트롤넷 모델 로드"
+    }
+  },
+  "12": {
+    "inputs": {
+      "image": "pixel1.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Pixel Character Image"
+    }
+  },
+  "13": {
+    "inputs": {
+      "text": "blurry, low quality, low resolution, bad quality, adult, nude, deformed, mutated, disfigured, simple, noise, dust, foggy, bhands-neg, verybadimagenegative_v1.3, Beyondv4-neg, BadDream, Show less",
+      "clip": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP 텍스트 인코딩 (프롬프트)"
+    }
+  },
+  "14": {
+    "inputs": {
+      "ckpt_name": "pixelmonster_v10.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "체크포인트 로드"
+    }
+  },
+  "15": {
+    "inputs": {
+      "model": "promptgen_large_v2.0",
+      "folder_path": "Path to your image folder",
+      "caption_method": "extra_mixed",
+      "max_new_tokens": 1024,
+      "num_beams": 4,
+      "random_prompt": "never",
+      "prefix_caption": "",
+      "suffix_caption": "insane quality, insane resolution, extreme quality, extreme resolution, Focused, Masterpiece",
+      "replace_tags": "",
+      "images": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "Miaoshouai_Tagger",
+    "_meta": {
+      "title": "🐾MiaoshouAI Tagger"
+    }
+  },
+  "16": {
+    "inputs": {
+      "stop_at_clip_layer": -2,
+      "clip": [
+        "14",
+        1
+      ]
+    },
+    "class_type": "CLIPSetLastLayer",
+    "_meta": {
+      "title": "CLIP 마지막 레이어 설정"
+    }
+  },
+  "17": {
+    "inputs": {
+      "text_0": "A pixel art illustration of a young woman standing confidently with her hands in her pockets, wearing a brown coat and blue jeans. she has fair skin, dark hair tied in a single hair bun, and blue eyes that are looking directly at the viewer. her expression is neutral, and she has a slight blush on her cheeks. she is standing in the middle of the image, with her full body visible. the background is a simple black gradient, which helps to focus attention on the character. the image is in a pixel art style, giving it a unique and detailed look. the woman appears to be in her early twenties, with a slim body and a serious expression. her brown coat is open, revealing her blue jeans and brown boots. the overall style is reminiscent of japanese anime and manga.\n\n1girl, solo, breasts, looking at viewer, blush, blue eyes, black hair, long hair, closed mouth, jewelry, standing, jacket, cowboy shot, earrings, pants, boots, black background, coat, blue pants, jeans, brown footwear, brown coat\n\ncamera_angle: from front, art_style: pixel art, location: NA, background: black background;NA, text: NA;camera: full body, clothing: brown coat, image_composition: middle;bottom, pants: blue jeans, accessory: earrings;brown boots, shoes: brown boots, action: standing with hands in pockets, facing_direction: facing viewer;facing viewer, facial_expression: neutral;neutral, eye_color: blue eyes;blue eyes, gender: 1woman;1woman, hair_color : dark hair;dark hair, hair style: long hair;long hair, tied up in a bun, race: light skin;light skin, body: sliminsane quality, insane resolution, extreme quality, extreme resolution, Focused, Masterpiece",
+      "text": [
+        "15",
+        2
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "18": {
+    "inputs": {
+      "conditioning_to": [
+        "9",
+        0
+      ],
+      "conditioning_from": [
+        "19",
+        0
+      ]
+    },
+    "class_type": "ConditioningConcat",
+    "_meta": {
+      "title": "조건 (연결)"
+    }
+  },
+  "19": {
+    "inputs": {
+      "text": "white background, consistent character, (one person), sprite sheet, animation frame, full body, pixel art, 32-bit, 8k, 10 frames, solid background, insanely sharp, detailed, HD, low-res, ",
+      "clip": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Positive Prompt)"
+    }
+  },
+  "25": {
+    "inputs": {
+      "strength": 1.2000000000000002,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "18",
+        0
+      ],
+      "negative": [
+        "13",
+        0
+      ],
+      "control_net": [
+        "11",
+        0
+      ],
+      "image": [
+        "7",
+        0
+      ],
+      "vae": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "컨트롤넷 적용"
+    }
+  },
+  "31": {
+    "inputs": {
+      "seed": 855881813662788,
+      "steps": 20,
+      "cfg": 3.46,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 1,
+      "model": [
+        "34",
+        0
+      ],
+      "positive": [
+        "25",
+        0
+      ],
+      "negative": [
+        "25",
+        1
+      ],
+      "latent_image": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "34": {
+    "inputs": {
+      "weight": 1.0000000000000002,
+      "weight_type": "linear",
+      "start_at": 0,
+      "end_at": 1,
+      "embeds_scaling": "V only",
+      "model": [
+        "37",
+        0
+      ],
+      "ipadapter": [
+        "37",
+        1
+      ],
+      "pos_embed": [
+        "38",
+        0
+      ]
+    },
+    "class_type": "IPAdapterEmbeds",
+    "_meta": {
+      "title": "IPAdapter Embeds"
+    }
+  },
+  "37": {
+    "inputs": {
+      "preset": "STANDARD (medium strength)",
+      "model": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "IPAdapterUnifiedLoader",
+    "_meta": {
+      "title": "IPAdapter Unified Loader"
+    }
+  },
+  "38": {
+    "inputs": {
+      "weight": 1,
+      "ipadapter": [
+        "37",
+        1
+      ],
+      "image": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "IPAdapterEncoder",
+    "_meta": {
+      "title": "IPAdapter Encoder"
+    }
+  },
+  "39": {
+    "inputs": {
+      "video": "제목 없는 동영상 - Clipchamp로 제작 (3).mp4",
+      "force_rate": 12,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 0,
+      "skip_first_frames": 2,
+      "select_every_nth": 1,
+      "format": "AnimateDiff"
+    },
+    "class_type": "VHS_LoadVideo",
+    "_meta": {
+      "title": "Load Video (Upload) 🎥🅥🅗🅢"
+    }
+  },
+  "40": {
+    "inputs": {
+      "model_name": "General",
+      "device": "AUTO",
+      "dtype": "float32"
+    },
+    "class_type": "AutoDownloadBiRefNetModel",
+    "_meta": {
+      "title": "AutoDownloadBiRefNetModel"
+    }
+  },
+  "41": {
+    "inputs": {
+      "width": 512,
+      "height": 768,
+      "upscale_method": "nearest",
+      "blur_size": 91,
+      "blur_size_two": 7,
+      "fill_color": true,
+      "color": 45472,
+      "mask_threshold": 0,
+      "model": [
+        "40",
+        0
+      ],
+      "images": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "RembgByBiRefNetAdvanced",
+    "_meta": {
+      "title": "RembgByBiRefNetAdvanced"
+    }
+  },
+  "42": {
+    "inputs": {
+      "width": 512,
+      "height": 768,
+      "batch_size": [
+        "39",
+        1
+      ]
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "빈 잠재 이미지"
+    }
+  },
+  "43": {
+    "inputs": {
+      "image": [
+        "41",
+        0
+      ]
+    },
+    "class_type": "ImageRemoveAlpha+",
+    "_meta": {
+      "title": "🔧 Image Remove Alpha"
+    }
+  },
+  "44": {
+    "inputs": {
+      "images": [
+        "43",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "이미지 미리보기"
+    }
+  },
+  "45": {
+    "inputs": {
+      "a": 6.283185307179586,
+      "bg_threshold": 0.10000000000000002,
+      "resolution": 512,
+      "image": [
+        "43",
+        0
+      ]
+    },
+    "class_type": "MiDaS-DepthMapPreprocessor",
+    "_meta": {
+      "title": "MiDaS Depth Map"
+    }
+  },
+  "46": {
+    "inputs": {
+      "images": [
+        "45",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "depth미리보기"
+    }
+  },
+  "47": {
+    "inputs": {
+      "detect_hand": "enable",
+      "detect_body": "enable",
+      "detect_face": "disable",
+      "resolution": 512,
+      "bbox_detector": "yolox_l.onnx",
+      "pose_estimator": "dw-ll_ucoco_384_bs5.torchscript.pt",
+      "scale_stick_for_xinsr_cn": "disable",
+      "image": [
+        "43",
+        0
+      ]
+    },
+    "class_type": "DWPreprocessor",
+    "_meta": {
+      "title": "DWPose Estimator"
+    }
+  },
+  "48": {
+    "inputs": {
+      "images": [
+        "47",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "이미지 미리보기"
+    }
+  },
+  "49": {
+    "inputs": {
+      "strength": 0.30000000000000004,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "62",
+        0
+      ],
+      "negative": [
+        "58",
+        0
+      ],
+      "control_net": [
+        "52",
+        0
+      ],
+      "image": [
+        "45",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "컨트롤넷 적용"
+    }
+  },
+  "50": {
+    "inputs": {
+      "strength": 0.30000000000000004,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "49",
+        0
+      ],
+      "negative": [
+        "49",
+        1
+      ],
+      "control_net": [
+        "51",
+        0
+      ],
+      "image": [
+        "47",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "컨트롤넷 적용"
+    }
+  },
+  "51": {
+    "inputs": {
+      "control_net_name": "1.5/control_v11p_sd15_openpose_fp16.safetensors"
+    },
+    "class_type": "ControlNetLoaderAdvanced",
+    "_meta": {
+      "title": "Load Advanced ControlNet Model 🛂🅐🅒🅝"
+    }
+  },
+  "52": {
+    "inputs": {
+      "control_net_name": "1.5/control_v11f1p_sd15_depth_fp16.safetensors"
+    },
+    "class_type": "ControlNetLoaderAdvanced",
+    "_meta": {
+      "title": "Load Advanced ControlNet Model 🛂🅐🅒🅝"
+    }
+  },
+  "53": {
+    "inputs": {
+      "text_0": "A pixel art illustration of a young woman standing in a full body pose, wearing a brown cardigan over a white shirt and blue jeans. the woman has fair skin, blue eyes, and dark brown hair tied in a single ponytail. she is standing with her arms crossed, looking to the side with a neutral expression. the background is a solid black color. the image is in a pixel art style, with a focus on the character's facial features and clothing.\n\n1girl, solo, breasts, looking at viewer, blush, simple background, brown hair, black hair, long sleeves, closed mouth, standing, jacket, white shirt, full body, ponytail, boots, pants, brown footwear, arms behind back, brown jacket, blue pants, white collared shirt, brown coat, brown boots, jeans, brown pants\n\ncamera_angle: frontal, art_style: pixel art, image_composition: middle, facing_direction: facing viewer, facial_expression: neutral, gender: 1woman, action: standing, eye_directional eyes, pants: blue jeans",
+      "text": [
+        "54",
+        2
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "54": {
+    "inputs": {
+      "model": "promptgen_base_v2.0",
+      "folder_path": "Path to your image folder",
+      "caption_method": "extra_mixed",
+      "max_new_tokens": 1024,
+      "num_beams": 4,
+      "random_prompt": "never",
+      "prefix_caption": "",
+      "suffix_caption": "",
+      "replace_tags": "replace_tags eg:search1:replace1;search2:replace2",
+      "images": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "Miaoshouai_Tagger",
+    "_meta": {
+      "title": "🐾MiaoshouAI Tagger"
+    }
+  },
+  "55": {
+    "inputs": {
+      "ckpt_name": "pixelmonster_v10.safetensors",
+      "beta_schedule": "sqrt_linear (AnimateDiff)",
+      "use_custom_scale_factor": false,
+      "scale_factor": 0.18215
+    },
+    "class_type": "CheckpointLoaderSimpleWithNoiseSelect",
+    "_meta": {
+      "title": "Load Checkpoint w/ Noise Select 🎭🅐🅓"
+    }
+  },
+  "56": {
+    "inputs": {
+      "text": [
+        "54",
+        2
+      ],
+      "clip": [
+        "59",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP 텍스트 인코딩 (프롬프트)"
+    }
+  },
+  "57": {
+    "inputs": {
+      "text": "pixel art, 8bit, low resolution, hard edges, no smooth shading, pixelated, no_background, walking, full body, action pose, dynamic pose, mid stride, side view, profile, looking to the side",
+      "clip": [
+        "59",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP 텍스트 인코딩 (프롬프트)"
+    }
+  },
+  "58": {
+    "inputs": {
+      "text": "(worst quality, low quality: 1.4), nsfw, color variation, color inconsistency, color shift, unstable colors\n",
+      "clip": [
+        "59",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP 텍스트 인코딩 (프롬프트)"
+    }
+  },
+  "59": {
+    "inputs": {
+      "stop_at_clip_layer": -2,
+      "clip": [
+        "55",
+        1
+      ]
+    },
+    "class_type": "CLIPSetLastLayer",
+    "_meta": {
+      "title": "CLIP 마지막 레이어 설정"
+    }
+  },
+  "60": {
+    "inputs": {
+      "context_length": 16,
+      "context_overlap": 4,
+      "fuse_method": "pyramid",
+      "use_on_equal_length": false,
+      "start_percent": 0,
+      "guarantee_steps": 1
+    },
+    "class_type": "ADE_StandardStaticContextOptions",
+    "_meta": {
+      "title": "Context Options◆Standard Static 🎭🅐🅓"
+    }
+  },
+  "61": {
+    "inputs": {
+      "batch_offset": 0,
+      "noise_type": "FreeNoise",
+      "seed_gen": "comfy",
+      "seed_offset": 0,
+      "adapt_denoise_steps": 0
+    },
+    "class_type": "ADE_AnimateDiffSamplingSettings",
+    "_meta": {
+      "title": "Sample Settings 🎭🅐🅓"
+    }
+  },
+  "62": {
+    "inputs": {
+      "conditioning_to": [
+        "56",
+        0
+      ],
+      "conditioning_from": [
+        "57",
+        0
+      ]
+    },
+    "class_type": "ConditioningConcat",
+    "_meta": {
+      "title": "조건 (연결)"
+    }
+  },
+  "63": {
+    "inputs": {
+      "model_name": "mm_sd_v15_v2.ckpt",
+      "beta_schedule": "autoselect",
+      "model": [
+        "55",
+        0
+      ],
+      "context_options": [
+        "60",
+        0
+      ],
+      "sample_settings": [
+        "61",
+        0
+      ]
+    },
+    "class_type": "ADE_AnimateDiffLoaderGen1",
+    "_meta": {
+      "title": "AnimateDiff Loader 🎭🅐🅓①"
+    }
+  },
+  "64": {
+    "inputs": {
+      "width": 512,
+      "height": 768,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "빈 잠재 이미지"
+    }
+  },
+  "65": {
+    "inputs": {
+      "seed": 714602554759906,
+      "steps": 20,
+      "cfg": 6,
+      "sampler_name": "euler",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "14",
+        0
+      ],
+      "positive": [
+        "50",
+        0
+      ],
+      "negative": [
+        "50",
+        1
+      ],
+      "latent_image": [
+        "64",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "67": {
+    "inputs": {
+      "preset": "PLUS (high strength)",
+      "model": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "IPAdapterUnifiedLoader",
+    "_meta": {
+      "title": "IPAdapter Unified Loader"
+    }
+  },
+  "68": {
+    "inputs": {
+      "weight": 1.0000000000000002,
+      "ipadapter": [
+        "67",
+        1
+      ],
+      "image": [
+        "69",
+        0
+      ]
+    },
+    "class_type": "IPAdapterEncoder",
+    "_meta": {
+      "title": "IPAdapter Encoder"
+    }
+  },
+  "69": {
+    "inputs": {
+      "split_index": 1,
+      "images": [
+        "70",
+        0
+      ]
+    },
+    "class_type": "VHS_SplitImages",
+    "_meta": {
+      "title": "Split Images 🎥🅥🅗🅢"
+    }
+  },
+  "70": {
+    "inputs": {
+      "samples": [
+        "65",
+        0
+      ],
+      "vae": [
+        "73",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE 디코드"
+    }
+  },
+  "71": {
+    "inputs": {
+      "images": [
+        "69",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "이미지 미리보기"
+    }
+  },
+  "72": {
+    "inputs": {
+      "weight": 0.20000000000000004,
+      "weight_type": "style transfer",
+      "start_at": 0,
+      "end_at": 1,
+      "embeds_scaling": "K+V",
+      "model": [
+        "67",
+        0
+      ],
+      "ipadapter": [
+        "67",
+        1
+      ],
+      "pos_embed": [
+        "68",
+        0
+      ],
+      "neg_embed": [
+        "68",
+        1
+      ]
+    },
+    "class_type": "IPAdapterEmbeds",
+    "_meta": {
+      "title": "IPAdapter Embeds"
+    }
+  },
+  "73": {
+    "inputs": {
+      "vae_name": "SD1.5/vae-ft-mse-840000-ema-pruned.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "VAE 로드"
+    }
+  },
+  "74": {
+    "inputs": {
+      "ratio": 0.8500000000000002,
+      "model1": [
+        "72",
+        0
+      ],
+      "model2": [
+        "63",
+        0
+      ]
+    },
+    "class_type": "ModelMergeSimple",
+    "_meta": {
+      "title": "모델 병합 (단순)"
+    }
+  },
+  "75": {
+    "inputs": {
+      "add_noise": "disable",
+      "noise_seed": 888888889,
+      "steps": 20,
+      "cfg": 8,
+      "sampler_name": "euler",
+      "scheduler": "karras",
+      "start_at_step": 1,
+      "end_at_step": 20,
+      "return_with_leftover_noise": "disable",
+      "model": [
+        "74",
+        0
+      ],
+      "positive": [
+        "50",
+        0
+      ],
+      "negative": [
+        "50",
+        1
+      ],
+      "latent_image": [
+        "42",
+        0
+      ]
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "고급 KSampler"
+    }
+  },
+  "76": {
+    "inputs": {
+      "model_name": "General",
+      "device": "AUTO",
+      "dtype": "float32"
+    },
+    "class_type": "AutoDownloadBiRefNetModel",
+    "_meta": {
+      "title": "AutoDownloadBiRefNetModel"
+    }
+  },
+  "77": {
+    "inputs": {
+      "width": 512,
+      "height": 768,
+      "upscale_method": "nearest",
+      "blur_size": 91,
+      "blur_size_two": 7,
+      "fill_color": false,
+      "color": 0,
+      "mask_threshold": 0,
+      "model": [
+        "76",
+        0
+      ],
+      "images": [
+        "78",
+        0
+      ]
+    },
+    "class_type": "RembgByBiRefNetAdvanced",
+    "_meta": {
+      "title": "RembgByBiRefNetAdvanced"
+    }
+  },
+  "78": {
+    "inputs": {
+      "samples": [
+        "75",
+        0
+      ],
+      "vae": [
+        "73",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE 디코드"
+    }
+  },
+  "79": {
+    "inputs": {
+      "image": [
+        "77",
+        0
+      ]
+    },
+    "class_type": "ImageRemoveAlpha+",
+    "_meta": {
+      "title": "🔧 Image Remove Alpha"
+    }
+  },
+  "80": {
+    "inputs": {
+      "frame_rate": 8,
+      "loop_count": 0,
+      "filename_prefix": "pixel2video",
+      "format": "image/gif",
+      "pingpong": false,
+      "save_output": true,
+      "images": [
+        "79",
+        0
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine 🎥🅥🅗🅢"
+    }
+  },
+  "81": {
+    "inputs": {
+      "images": [
+        "77",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "dance image preview"
+    }
+  },
+  "87": {
+    "inputs": {
+      "control_net_name": "1.5/control_v11p_sd15_openpose_fp16.safetensors"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "컨트롤넷 모델 로드"
+    }
+  },
+  "88": {
+    "inputs": {
+      "image": "Walk_openpose.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Pose Image"
+    }
+  },
+  "89": {
+    "inputs": {
+      "strength": 1.2000000000000002,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "18",
+        0
+      ],
+      "negative": [
+        "13",
+        0
+      ],
+      "control_net": [
+        "87",
+        0
+      ],
+      "image": [
+        "88",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "컨트롤넷 적용"
+    }
+  },
+  "90": {
+    "inputs": {
+      "seed": 855881813662788,
+      "steps": 20,
+      "cfg": 3.46,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 1,
+      "model": [
+        "34",
+        0
+      ],
+      "positive": [
+        "89",
+        0
+      ],
+      "negative": [
+        "89",
+        1
+      ],
+      "latent_image": [
+        "99",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "91": {
+    "inputs": {
+      "model_name": "General",
+      "device": "AUTO",
+      "dtype": "float32"
+    },
+    "class_type": "AutoDownloadBiRefNetModel",
+    "_meta": {
+      "title": "AutoDownloadBiRefNetModel"
+    }
+  },
+  "92": {
+    "inputs": {
+      "samples": [
+        "90",
+        0
+      ],
+      "vae": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE 디코드"
+    }
+  },
+  "93": {
+    "inputs": {
+      "model": [
+        "91",
+        0
+      ],
+      "images": [
+        "92",
+        0
+      ]
+    },
+    "class_type": "RembgByBiRefNet",
+    "_meta": {
+      "title": "RembgByBiRefNet"
+    }
+  },
+  "95": {
+    "inputs": {
+      "images": [
+        "93",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "walk image preview"
+    }
+  },
+  "96": {
+    "inputs": {
+      "filename_prefix": "walk",
+      "images": [
+        "93",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "이미지 저장"
+    }
+  },
+  "97": {
+    "inputs": {
+      "filename_prefix": "run",
+      "images": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "이미지 저장"
+    }
+  },
+  "98": {
+    "inputs": {
+      "filename_prefix": "dance",
+      "images": [
+        "77",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "이미지 저장"
+    }
+  },
+  "99": {
+    "inputs": {
+      "width": 2584,
+      "height": 840,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "빈캔버스"
+    }
+  }
+}

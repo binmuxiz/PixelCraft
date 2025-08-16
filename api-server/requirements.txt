@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+requests
+aiofiles
+websocket-client
+Pillow
+python-multipart
