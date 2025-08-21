@@ -41,7 +41,7 @@ PixelCraft는 사용자의 사진과 영상을 기반으로 **걷기·뛰기 프
 ```bash
 cd api-server
 pip install -r requirements.txt
-uvicorn app.main:app
+uvicorn main:app
 ```
 
 ---
